@@ -27,44 +27,4 @@ public class MovieRepository {
         getMappedTable(Movie.class).putItem(movie);
         return movie;
     }
-
-    public Movie getMovieById(String id, Integer year){
-
-        return getMappedTable(Movie.class).getItem(Key.builder()
-                .partitionValue(id)
-                .sortValue(year)
-                .build());
-    }
-
-    public List<Movie> getMovieList(){
-        ScanEnhancedRequest scanEnhancedRequest = ScanEnhancedRequest.builder()
-//                .filterExpression(filterExpression)
-                .build();
-        PageIterable<Movie> returnedList = getMappedTable(Movie.class).scan(scanEnhancedRequest);
-        return returnedList.items().stream().toList();
-    }
-
-    public Movie updateMovie(Movie movie){
-        Movie load = getMovieById(movie.getTitle(), movie.getYear());
-        // map these two entity
-        load.setCountry(movie.getCountry());
-        load.setDuration(movie.getDuration());
-        load.setGenre(movie.getGenre());
-        load.setLanguage(movie.getLanguage());
-        load.setYear(movie.getYear());
-        getMappedTable(Movie.class).putItem(load);
-
-        return load;
-    }
-
-    public String deleteMovie(String id, Integer year){
-        Movie load = this.getMovieById(id, year);
-        if(load != null){
-            getMappedTable(Movie.class).deleteItem(load);
-            return load.getTitle() + " " + load.getYear() + " get deleted !";
-        } else {
-            return null;
-        }
-
-    }
 }
