@@ -1,0 +1,5 @@
+awslocal dynamodb create-table --table-name customer --attribute-definitions AttributeName=id,AttributeType=S --key-schema AttributeName=id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --table-class STANDARD --region sa-east-1
+awslocal dynamodb create-table --table-name movie --attribute-definitions AttributeName=id,AttributeType=S --key-schema AttributeName=id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --table-class STANDARD --region sa-east-1
+awslocal dynamodb list-tables --region sa-east-1
+awslocal dynamodb describe-table --table-name movie | grep TableStatus
+awslocal dynamodb describe-table --table-name movie
