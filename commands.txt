@@ -3,3 +3,5 @@ awslocal dynamodb create-table --table-name movie --attribute-definitions Attrib
 awslocal dynamodb list-tables --region sa-east-1
 awslocal dynamodb describe-table --table-name movie | grep TableStatus
 awslocal dynamodb describe-table --table-name movie
+
+aws --endpoint-url=http://localhost:4566 dynamodb list-tables --region sa-east-1
